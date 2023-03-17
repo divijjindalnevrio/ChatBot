@@ -1,0 +1,81 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: services
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: services
+  - action: utter_services
+
+- story: company_more_info
+  steps:
+  - intent: more_info
+  - action: action_hello_world
+
+- story: timing
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: timing
+  - action: utter_timing
+
+- story: connect
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: connect
+  - action: utter_connect
+
+- story: company
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: company
+  - action: utter_company
+
+- story: thanks
+  steps:
+  - intent: thanks
+  - action: utter_thanks
+
+
+- story: project
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: project
+  - action: utter_project
+
+- story: client
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: client
+  - action: utter_client
+
+- story: health
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: health
+  - action: utter_health
+
+- story: bye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+  
+  
+  
+  
+  
+
+
+ 

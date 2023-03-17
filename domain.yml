@@ -1,0 +1,87 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - services
+  - mood_great
+  - health
+  - project
+  - timing
+  - connect
+  - client
+  - company
+  - thanks
+  - deny
+  - bot_challenge
+  - more_info
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+  - text: "Hey!"
+  - text: "Hello!"
+  - text: "Hi there, what can I do for you?"
+  - text: "Hi there, how can I help?"
+
+  utter_info:
+  - text: For more info, you can visit our website {link}
+
+  utter_thanks:
+  - text: "My pleasure"
+  - text: "Happy to help"
+  - text: "Any time!"
+
+  utter_affirm:
+  - text: "Happy to help, Anything else I can do for you?"
+  - text: "Any time!, Anything else I can do for you?"
+
+  utter_services:
+  - text: "These are some of the services we provide - 'Web Development', 'Cloud Services', 'Mobile Apps', 'UI/UX & Graphic Design', 'Game Development', 'AR/VR Development'"
+
+  utter_timing:
+  - text: "Our office timings are 9 A.M - 6 P.M IST"
+  - text: "You can visit us between 9 A.M - 6 P.M IST"
+  - text: "You can meet us between 9 A.M - 6 P.M IST"
+
+  utter_connect:
+  - text: "You can connect with us: Email- id - preeti@nevrio.tech, deepak@nevrio.tech or call us - 9041959799"
+
+  # utter_unknown:
+  # - text: "I am still learning, For further more information contant us at Email- id - preeti@nevrio.tech, deepak@nevrio.tech or call us - 9041959799"
+
+  utter_client:
+  - text: "We have worked with several clients from outside India as well as inside India. Its been 2 great years we have worked with and satisfied clients. For more information you can connect with us: Email- id - preeti@nevrio.tech, deepak@nevrio.tech or call us - 9041959799 "
+
+  utter_company:
+  - text: "Nevrio are service based startup. We have worked on many projects with many clients for 2 great years. We have team for Web, Gaming, VR/AR, AI/ML and Mobile App Develpment. For more information You can connect with us: Email- id - preeti@nevrio.tech, deepak@nevrio.tech or call us - 9041959799 "
+
+  utter_project:
+  - text: "We have worked with several projects over 2 years. Some of our good projects are : 1. Foodle - A food order and delivery app. 2. GameMaster - A 2d Game. 3. POM - A dating app in flutter. 4.MDM - An android app for phone lock system."
+
+  utter_health:
+  - text: "I'm doing well, thanks for asking."
+  - text: "I'm feeling great"
+  - text: "I'm hanging in there, thanks for asking."
+  - text: "I'm doing pretty well, thanks for asking."
+  - text: "I'm doing pretty good, thanks for asking."
+  - text: "I'm feeling quite positive today, thanks for asking!"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+  - text: "It was nice talking to you, have a great day!"
+  - text: "See you later, thanks for visiting."
+
+  utter_iamabot:
+  - text: "I am a bot, built  by Nevrio."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+actions:
+- action_hello_world
