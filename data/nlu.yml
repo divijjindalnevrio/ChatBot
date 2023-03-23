@@ -97,7 +97,6 @@ nlu:
 
 - intent: health
   examples: |
-    - Tell me about your projects?
     - Hey there, how have you been?
     - Hi, how is everything with you?
     - How are you?
@@ -185,13 +184,18 @@ nlu:
     - Tell me about your company
     - What is the history of your company
     - What products or services does your company offer?
-    - How old are you?
     - For how many years are you serving clients
     - What does your company do?
     - can you tell me brief about your company
     - Can you give me an overview of your company?
     - How long has your company been in business?
     - Can you describe the company culture at your organization?
+
+- intent: age
+  examples: |
+    - How old are you?
+    - What is your age?
+    - When did you come in existance?
 
 - intent: bot_challenge
   examples: |
@@ -216,3 +220,35 @@ nlu:
     - nah
     - nada
     - nay
+
+- intent: want_collaboration
+  examples: |
+    - collaboration
+    - I want to collaborate
+    - I would like to collaborate with your company
+
+- intent: want_job
+  examples: |
+    - want job
+    - I am looking for vacancy.
+    - looking for job opportunity
+
+- intent: name_entry
+  examples: |
+    - [Neha] {name}
+    - my name is [david] {name}
+    - myself [preeti] {name}
+
+- intent: phone_number_entry
+  examples: |
+    - [9122658580] {phone_number}
+    - [9076823551] {phone_number}
+
+- intent: email_id_entry
+  examples: |
+    - [neha@nevrio.tech] {email_id}
+    - [neha@gmail.com] {email_id}
+    - [neha@live.com] {email_id}
+    - [neha@yahoo-inc.com] {email_id}
+
+    

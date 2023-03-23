@@ -11,6 +11,7 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.forms import FormAction
 
 
 class ActionHelloWorld(Action):
@@ -28,3 +29,21 @@ class ActionHelloWorld(Action):
         dispatcher.utter_template("utter_info",tracker,link=Link)
 
         return []
+    
+class ActionFormInfo(FormAction):
+
+    def name(self) -> Text:
+        """Unique identifier of the form"""
+
+        return "form_info"
+    
+    @staticmethod
+    def required_slots(tracker: Tracker) -> List[Text]:
+        """A list of required slots that the form has to fill"""
+
+        return ["name", "phone_number", "email_id"]
+
+    def slot_mappings(self) -> Dict[Text, Any]:
+        return {}
+
+        

@@ -45,7 +45,6 @@ stories:
   - intent: thanks
   - action: utter_thanks
 
-
 - story: project
   steps:
   - intent: greet
@@ -60,6 +59,12 @@ stories:
   - intent: client
   - action: utter_client
 
+- story: collaboration
+  steps:
+  - intent: want_collaboration
+  - action: utter_company
+
+
 - story: health
   steps:
   - intent: greet
@@ -71,6 +76,11 @@ stories:
   steps:
   - intent: goodbye
   - action: utter_goodbye
+
+- story: age
+  steps:
+  - intent: age
+  - action: utter_age
   
   
   

@@ -14,16 +14,25 @@ intents:
   - company
   - thanks
   - deny
+  - age
   - bot_challenge
   - more_info
+  - want_collaboration
+  - want_job
+  - name_entry
+  - phone_number_entry
+  - email_id_entry
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-  - text: "Hey!"
-  - text: "Hello!"
-  - text: "Hi there, what can I do for you?"
-  - text: "Hi there, how can I help?"
+  - text: "Hi, I am Nevrio_bot. How can I help you?"
+    buttons: 
+      - title: "Looking for Collaboration?"
+        payload: "/want_collaboration"
+      - title: "Looking for Services?"
+        payload: "/services"
+      - title: "Looking for Job?"
+        payload: "/want_job"
 
   utter_info:
   - text: For more info, you can visit our website {link}
@@ -51,11 +60,12 @@ responses:
   # utter_unknown:
   # - text: "I am still learning, For further more information contant us at Email- id - preeti@nevrio.tech, deepak@nevrio.tech or call us - 9041959799"
 
+ 
   utter_client:
   - text: "We have worked with several clients from outside India as well as inside India. Its been 2 great years we have worked with and satisfied clients. For more information you can connect with us: Email- id - preeti@nevrio.tech, deepak@nevrio.tech or call us - 9041959799 "
 
   utter_company:
-  - text: "Nevrio are service based startup. We have worked on many projects with many clients for 2 great years. We have team for Web, Gaming, VR/AR, AI/ML and Mobile App Develpment. For more information You can connect with us: Email- id - preeti@nevrio.tech, deepak@nevrio.tech or call us - 9041959799 "
+  - text: "Nevrio is service based startup. We have worked on many projects with many clients for 2 great years. We have team for Web, Gaming, VR/AR, AI/ML and Mobile App Develpment."
 
   utter_project:
   - text: "We have worked with several projects over 2 years. Some of our good projects are : 1. Foodle - A food order and delivery app. 2. GameMaster - A 2d Game. 3. POM - A dating app in flutter. 4.MDM - An android app for phone lock system."
@@ -67,6 +77,9 @@ responses:
   - text: "I'm doing pretty well, thanks for asking."
   - text: "I'm doing pretty good, thanks for asking."
   - text: "I'm feeling quite positive today, thanks for asking!"
+
+  utter_age:
+  - text: "I am 2 years old."
 
   utter_happy:
   - text: "Great, carry on!"
@@ -82,6 +95,34 @@ responses:
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
+entities:
+  - name
+  - phone_number
+  - email_id
+
+
+slots:
+  name:
+    type: unfeaturized
+    mappings:
+    - type: from_entity
+      entity: name
+  phone_number:
+    type: unfeaturized
+    mappings:
+    - type: from_entity
+      entity: phone_number
+  email_id:
+    type: unfeaturized
+    mappings:
+    - type: from_entity
+      entity: email_id
+
+
+forms:
+- form_info
+
 
 actions:
 - action_hello_world
