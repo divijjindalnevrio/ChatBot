@@ -30,20 +30,20 @@ class ActionHelloWorld(Action):
 
         return []
     
-class ActionFormInfo(FormAction):
+# class ActionFormInfo(FormAction):
 
-    def name(self) -> Text:
-        """Unique identifier of the form"""
+#     def name(self) -> Text:
+#         """Unique identifier of the form"""
 
-        return "form_info"
+#         return "form_info"
     
-    @staticmethod
-    def required_slots(tracker: Tracker) -> List[Text]:
-        """A list of required slots that the form has to fill"""
+#     @staticmethod
+#     def required_slots(tracker: Tracker) -> List[Text]:
+#         """A list of required slots that the form has to fill"""
 
-        return ["name", "phone_number", "email_id"]
+#         return ["name", "phone_number", "email_id"]
 
-    def slot_mappings(self) -> Dict[Text, Any]:
-        return {}
+#     def slot_mappings(self) -> Dict[Text, Any]:
+#         return {}
 
         
