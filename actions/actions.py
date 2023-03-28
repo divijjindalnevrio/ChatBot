@@ -11,7 +11,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
-import phonenumbers
+# import phonenumbers
 import re
 
 
@@ -78,26 +78,26 @@ class ValidateInfoForm(FormValidationAction):
         return {"email_id": None}
     
     
-    def validate_phone_number(self,
-        slot_value: Any,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        """Validate 'phone_number' value."""
+    # def validate_phone_number(self,
+    #     slot_value: Any,
+    #     dispatcher: CollectingDispatcher,
+    #     tracker: Tracker,
+    #     domain: DomainDict,
+    # ) -> Dict[Text, Any]:
+    #     """Validate 'phone_number' value."""
 
-        # full_name = tracker.get_slot("full_name")
-        # email_id = tracker.get_slot("email_id")
+    #     # full_name = tracker.get_slot("full_name")
+    #     # email_id = tracker.get_slot("email_id")
 
     
-        if phonenumbers.parse(slot_value):
+    #     if phonenumbers.parse(slot_value):
             
-            number = slot_value
-            dispatcher.utter_message(text= f"Thank you {full_name} for your Email Id {email_id}.")
-            return {"phone_number": number}
+    #         number = slot_value
+    #         dispatcher.utter_message(text= f"Thank you {full_name} for your Email Id {email_id}.")
+    #         return {"phone_number": number}
         
-        dispatcher.utter_message(text= f"Please enter correct phone number.")
-        return {"phone_number": None}
+    #     dispatcher.utter_message(text= f"Please enter correct phone number.")
+    #     return {"phone_number": None}
         
 
 
