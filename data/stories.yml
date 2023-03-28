@@ -52,6 +52,7 @@ stories:
   - intent: project
   - action: utter_project
 
+
 - story: client
   steps:
   - intent: greet
@@ -59,10 +60,32 @@ stories:
   - intent: client
   - action: utter_client
 
+
 - story: collaboration
   steps:
+  - intent: greet
+  - action: utter_greet
   - intent: want_collaboration
   - action: utter_company
+  - intent: request_details
+  - action: info_form
+  - active_loop: info_form
+  - slot_was_set:
+    - requested_slot: full_name
+  - slot_was_set:
+    - full_name: Alexa
+  - slot_was_set:
+    - requested_slot: email_id
+  - slot_was_set:
+    - email_id: example@gmail.com
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: +918007576432
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
 
 
 - story: health

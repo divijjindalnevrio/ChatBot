@@ -233,22 +233,39 @@ nlu:
     - I am looking for vacancy.
     - looking for job opportunity
 
-- intent: name_entry
+- intent: request_details
   examples: |
-    - [Neha] {name}
-    - my name is [david] {name}
-    - myself [preeti] {name}
+    - I want to share my detail.
+    - My contact details.
+    - Here is my contact details.
 
-- intent: phone_number_entry
-  examples: |
-    - [9122658580] {phone_number}
-    - [9076823551] {phone_number}
 
-- intent: email_id_entry
-  examples: |
-    - [neha@nevrio.tech] {email_id}
-    - [neha@gmail.com] {email_id}
-    - [neha@live.com] {email_id}
-    - [neha@yahoo-inc.com] {email_id}
+# - intent: full_name
+#   examples: |
+#     - My name is [Neha Kakkar] (full_name)
+#     - [Aadi Tuli](full_name)
+#     - [Preeti Patel](full_name)
+#     - [David Guetta](full_name)
+#     - [Ryoma Takeuchi](full_name)
+#     - [Leonardo DiCaprio](full_name)
+#     - [Leonardo Vinci](full_name)
+#     - [Jacqueline Fernandez](full_name)
+#     - [Katrina Kaif](full_name)
+#     - [Aishwarya Rai](full_name)
+#     - [Vincent](full_name)
+#     - [Jenny](full_name)
+#     - [Rachael](full_name)
 
-    
+# - intent: phone_number
+#   examples: |
+#     - [9122658580](phone_number)
+#     - [9076823551](phone_number)
+#     - [8089283102](phone_number)
+#     - [7876940000](phone_number)
+
+# - intent: email_id
+#   examples: |
+#     - [example@nevrio.tech](email_id)
+#     - [example@gmail.com](email_id)
+#     - [neexampleha@live.com](email_id)
+#     - [example@yahoo-inc.com](email_id)

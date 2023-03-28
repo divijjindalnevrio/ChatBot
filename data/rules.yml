@@ -17,3 +17,20 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
+- rule: Activate Info Form
+  steps:
+  - intent: request_details
+  - action: info_form
+  - active_loop: info_form
+
+- rule: Submit Info Form
+  condition:
+  - active_loop: info_form
+  steps:
+  - action: info_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+
+
