@@ -3,6 +3,6 @@
 models/*
 actions/__pycache__/*
 rasa_chatbot/*
-storygraph.dot
+story_graph.dot
 rasa.db
 graph.html
