@@ -11,7 +11,6 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
-from rasa_sdk.events import SlotSet, EventType
 # import phonenumbers
 import re
 
@@ -33,88 +32,50 @@ class ActionHelloWorld(Action):
         return []
     
 
-class ValidateInfoForm(Action):
+def clean_name(name):
+    return "".join([c for c in name if c.isalpha()])    
+
+class ValidateInfoForm(FormValidationAction):
 
     def name(self) -> Text:
 
-        return "action_info_form"
-        
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        required_slots = ["full_name", "email_id", "phone_number"]
-
-        for slot_name in required_slots:
-            if tracker.slots.get(slot_name) is None:
-
-                return [SlotSet("requested_slot", slot_name)]
-
-        return [SlotSet("requested_slot", None)]
+        return "validate_info_form"
     
 
-class ActionSubmit(Action):
-
-    def name(self) -> Text:
-
-        return "action_submit"
+    def validate_full_name(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate 'full_name' value."""
         
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        
-        dispatcher.utter_message(template= "utter_submit", full_name= tracker.get_slot("full_name"))
-
-
-    
-
-# def clean_name(name):
-#     return "".join([c for c in name if c.isalpha()])    
-
-# class ValidateInfoForm(FormValidationAction):
-
-#     def name(self) -> Text:
-
-#         return "validate_info_form"
-    
-
-#     def validate_full_name(
-#         self,
-#         slot_value: Any,
-#         dispatcher: CollectingDispatcher,
-#         tracker: Tracker,
-#         domain: DomainDict,
-#     ) -> Dict[Text, Any]:
-#         """Validate 'full_name' value."""
-        
-#         name = clean_name(slot_value)
-#         if len(name) == 0:
-#             dispatcher.utter_message(text= "That must've been a typo.")
-#             return {"full_name": None}
-#         return {"full_name": name}
+        name = clean_name(slot_value)
+        if len(name) == 0:
+            dispatcher.utter_message(text= "That must've been a typo.")
+            return {"full_name": None}
+        return {"full_name": name}
     
     
     
-    # def validate_email_id(self,
-    #     slot_value: Any,
-    #     dispatcher: CollectingDispatcher,
-    #     tracker: Tracker,
-    #     domain: DomainDict,
-    # ) -> Dict[Text, Any]:
+    def validate_email_id(self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
         
-    #     # full_name = tracker.get_slot("full_name")
+        # full_name = tracker.get_slot("full_name")
 
-    #     email = slot_value
+        email = slot_value
 
-    #     pat = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
+        pat = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
 
-    #     if re.match(pat,email):
-    #         dispatcher.utter_message(text= f"Thank {full_name}")
-    #         return {"email_id": email}
-    #     return {"email_id": None}
+        if re.match(pat,email):
+            dispatcher.utter_message(text= f"Thank {full_name}")
+            return {"email_id": email}
+        return {"email_id": None}
     
     
     # def validate_phone_number(self,

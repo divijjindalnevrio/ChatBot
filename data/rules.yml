@@ -19,8 +19,7 @@ rules:
 
 - rule: Activate Info Form
   steps:
-  - intent: collaboration
-  - action: utter_company
+  - intent: request_details
   - action: info_form
   - active_loop: info_form
 
