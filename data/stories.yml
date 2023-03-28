@@ -85,6 +85,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_submit
+  - action: utter_response
 
 
 - story: health
