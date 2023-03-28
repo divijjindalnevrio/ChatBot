@@ -148,3 +148,4 @@ session_config:
 actions:
 - action_hello_world
 - action_submit
+- validate_info_form
