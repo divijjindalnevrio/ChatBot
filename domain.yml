@@ -1,31 +1,33 @@
 version: "3.1"
 
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - services
-  - mood_great
-  - health
-  - project
-  - timing
-  - connect
-  - client
-  - company
-  - thanks
-  - deny
-  - age
-  - bot_challenge
-  - more_info
-  - want_collaboration
-  - want_job
-  - request_details
+- greet
+- goodbye
+- affirm
+- services
+- mood_great
+- health
+- project
+- timing
+- connect
+- client
+- company
+- thanks
+- deny
+- age
+- bot_challenge
+- more_info
+- want_collaboration
+- want_job
+- full_name
+- phone_number
+- email_id
 
 
-# entities:
-#   - full_name
-#   - email_id
-#   - phone_number
+entities:
+  - full_name
+  - email_id
+  - phone_number
 
 forms:
   info_form:
@@ -39,7 +41,7 @@ slots:
     type: text
     influence_conversation: true
     mappings:
-      - type: from_text
+      - type: from_entity
         conditions:
         - active_loop: info_form
           requested_slot: full_name
@@ -47,7 +49,7 @@ slots:
     type: any
     influence_conversation: false
     mappings:
-      - type: from_text
+      - type: from_entity
         conditions:
         - active_loop: info_form
           requested_slot: email_id
@@ -55,7 +57,7 @@ slots:
     type: any
     influence_conversation: false
     mappings:
-      - type: from_text
+      - type: from_entity
         conditions:
         - active_loop: info_form
           requested_slot: phone_number
@@ -130,13 +132,13 @@ responses:
   utter_iamabot:
   - text: "I am a bot, built  by Nevrio."
 
-  action_ask_full_name:
+  utter_ask_full_name:
   - text: "Your Full Name: "
 
-  action_ask_email_id:
+  utter_ask_email_id:
   - text: "Thank you for {full_name}. Please provide your Email ID: "
 
-  action_ask_phone_number:
+  utter_ask_phone_number:
   - text: "Your email id is {email_id}. Please provide your Contact Number: "
   
   utter_submit:
@@ -150,8 +152,8 @@ session_config:
 
 actions:
 - action_hello_world
-- validate_info_form
-- request_details
-# - action_ask_full_name
-# - action_ask_email_id
-# - action_ask_phone_number
+- action_info_form
+- action_submits
+# - utter_ask_full_name
+# - utter_ask_email_id
+# - utter_ask_phone_number
