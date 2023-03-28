@@ -67,7 +67,6 @@ stories:
   - action: utter_greet
   - intent: want_collaboration
   - action: utter_company
-  - intent: request_details
   - action: info_form
   - active_loop: info_form
   - slot_was_set:

@@ -19,13 +19,10 @@ intents:
   - more_info
   - want_collaboration
   - want_job
-  - request_details
+  - full_name
+  - phone_number
+  - email_id
 
-
-# entities:
-#   - full_name
-#   - email_id
-#   - phone_number
 
 forms:
   info_form:
@@ -95,9 +92,6 @@ responses:
   utter_connect:
   - text: "You can connect with us: Email- id - preeti@nevrio.tech, deepak@nevrio.tech or call us - 9041959799"
 
-  # utter_unknown:
-  # - text: "I am still learning, For further more information contant us at Email- id - preeti@nevrio.tech, deepak@nevrio.tech or call us - 9041959799"
-
  
   utter_client:
   - text: "We have worked with several clients from outside India as well as inside India. Its been 2 great years we have worked with and satisfied clients. For more information you can connect with us: Email- id - preeti@nevrio.tech, deepak@nevrio.tech or call us - 9041959799 "
@@ -130,13 +124,13 @@ responses:
   utter_iamabot:
   - text: "I am a bot, built  by Nevrio."
 
-  action_ask_full_name:
+  utter_ask_full_name:
   - text: "Your Full Name: "
 
-  action_ask_email_id:
+  utter_ask_email_id:
   - text: "Thank you for {full_name}. Please provide your Email ID: "
 
-  action_ask_phone_number:
+  utter_ask_phone_number:
   - text: "Your email id is {email_id}. Please provide your Contact Number: "
   
   utter_submit:
@@ -150,8 +144,4 @@ session_config:
 
 actions:
 - action_hello_world
-- validate_info_form
-- request_details
-# - action_ask_full_name
-# - action_ask_email_id
-# - action_ask_phone_number
+- action_submit
