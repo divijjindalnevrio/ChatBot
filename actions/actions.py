@@ -43,18 +43,41 @@ class ValidateInfoForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
-        """Validate `first_name` value."""
+        """Validate `full_name` value."""
 
         # If the name is super short, it might be wrong.
         pattern = r'^[a-zA-Z]+([-\'\s][a-zA-Z]+)*$'
         name = slot_value
-        if re.match(pattern, name):
+        if re.match(pattern, name) and len(name) >= 2:
             print("full_name:"+ name)
             return {"full_name": name}
 
         dispatcher.utter_message(text=f"That's a very short name. I'm assuming you mis-spelled.")
         print("full_name: None")
         return {"full_name": None}
+    
+
+    
+
+    def validate_email_id(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `email_id` value."""
+
+
+        regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        email = slot_value
+        if re.match(regex, email):
+            print("email_id:"+ email)
+            return {"email_id": email}
+
+        dispatcher.utter_message(text=f"Please enter a valid email address.")
+        print("email_id: None")
+        return {"email_id": None}
     
 
 class ActionSubmit(Action):
@@ -69,3 +92,10 @@ class ActionSubmit(Action):
     ) -> List[Dict[Text, Any]]:
         dispatcher.utter_message(template="utter_submit",
                                  Name=tracker.get_slot("full_name"))
+        
+
+
+
+
+
+    
