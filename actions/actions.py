@@ -79,6 +79,7 @@ class ValidateInfoForm(FormValidationAction):
         print("email_id: None")
         return {"email_id": None}
     
+    
 
 class ActionSubmit(Action):
     def name(self) -> Text:
