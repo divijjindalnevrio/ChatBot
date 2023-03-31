@@ -11,9 +11,13 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
-from rasa_sdk.events import EventType, SlotSet
+import smtplib, ssl
 import re
 
+PASSWORD = "pmdpsgsnbcsyizqq"
+SENDER_EMAIL_ID = "nevrio.chatbot@gmail.com"
+# SENDER_EMAILID = "8f3fcafd4c858d"
+RECEIV_EMAILID ="divij@nevrio.tech"
 
 class ActionHelloWorld(Action):
 
@@ -80,8 +84,51 @@ class ValidateInfoForm(FormValidationAction):
         return {"email_id": None}
     
     
+    
+    
+# Creating new class to send emails.
+class ActionEmail(Action):
+
+    def name(self) -> Text:
+        
+          # Name of the action
+        return "action_email"
+    
+    def run(
+            self,
+            dispatcher,
+            tracker: Tracker,
+            domain: "DomainDict"
+    ) -> List[Dict[Text, Any]]:
+        
+        send_email(
+        name = tracker.get_slot("full_name"),
+        email = tracker.get_slot("email_id")
+        )
+
+        
+        return []
+
+
+def send_email(name,email):
+  
+    try:
+
+        with smtplib.SMTP("smtp.gmail.com") as connection:
+            connection.starttls()
+            connection.login(SENDER_EMAIL_ID, PASSWORD)
+            connection.sendmail(from_addr=SENDER_EMAIL_ID, 
+                                to_addrs= RECEIV_EMAILID, 
+                                msg=f"Subject: IMPORTANT! \n\nName - {name} Email_id- {email}")
+            
+    except:
+        print("Sorry!!")
+       
+
 
 class ActionSubmit(Action):
+    
+
     def name(self) -> Text:
         return "action_submit"
 
@@ -91,6 +138,8 @@ class ActionSubmit(Action):
         tracker: Tracker,
         domain: "DomainDict",
     ) -> List[Dict[Text, Any]]:
+    
+
         dispatcher.utter_message(template="utter_submit",
                                  Name=tracker.get_slot("full_name"))
         

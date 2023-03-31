@@ -257,6 +257,7 @@ nlu:
     - [8089283102](phone_number)
     - [7876940000](phone_number)
 
+
 - intent: email_id
   examples: |
     - [example@nevrio.tech](email_id)

@@ -24,6 +24,7 @@ intents:
   - email_id
 
 
+
 forms:
   info_form:
     required_slots:
@@ -149,3 +150,4 @@ actions:
 - action_hello_world
 - action_submit
 - validate_info_form
+- action_email
