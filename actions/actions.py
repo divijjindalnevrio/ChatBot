@@ -13,24 +13,22 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 import smtplib, ssl
 import re
+import os
 
-PASSWORD = "pmdpsgsnbcsyizqq"
-SENDER_EMAIL_ID = "nevrio.chatbot@gmail.com"
-# SENDER_EMAILID = "8f3fcafd4c858d"
-RECEIV_EMAILID ="divij@nevrio.tech"
+
 
 class ActionHelloWorld(Action):
 
     def name(self) -> Text:
-        return "action_hello_world"
-        # return "comapany_website_link"
+        
+        return "comapany_website_link"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         Link = "https://nevrio.tech/"
-        # dispatcher.utter_message(text="Hello World!")
+        
         dispatcher.utter_template("utter_info",tracker,link=Link)
 
         return []
@@ -53,11 +51,11 @@ class ValidateInfoForm(FormValidationAction):
         pattern = r'^[a-zA-Z]+([-\'\s][a-zA-Z]+)*$'
         name = slot_value
         if re.match(pattern, name) and len(name) >= 2:
-            print("full_name:"+ name)
+           
             return {"full_name": name}
 
         dispatcher.utter_message(text=f"That's a very short name. I'm assuming you mis-spelled.")
-        print("full_name: None")
+        
         return {"full_name": None}
     
 
@@ -76,11 +74,11 @@ class ValidateInfoForm(FormValidationAction):
         regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
         email = slot_value
         if re.match(regex, email):
-            print("email_id:"+ email)
+            
             return {"email_id": email}
 
         dispatcher.utter_message(text=f"Please enter a valid email address.")
-        print("email_id: None")
+        
         return {"email_id": None}
     
     
@@ -111,37 +109,40 @@ class ActionEmail(Action):
 
 
 def send_email(name,email):
-  
-    try:
 
+   
+    RecieveList = os.environ["RECEIV_EMAILID"].strip('][').split(', ')
+    
+    try:
+      
+        
         with smtplib.SMTP("smtp.gmail.com") as connection:
             connection.starttls()
-            connection.login(SENDER_EMAIL_ID, PASSWORD)
-            connection.sendmail(from_addr=SENDER_EMAIL_ID, 
-                                to_addrs= RECEIV_EMAILID, 
+            connection.login(os.environ["SENDER_EMAIL_ID"], os.environ["PASSWORD"])
+            connection.sendmail(from_addr=os.environ["SENDER_EMAIL_ID"], 
+                                to_addrs= RecieveList, 
                                 msg=f"Subject: IMPORTANT! \n\nName - {name} Email_id- {email}")
             
-    except:
-        print("Sorry!!")
+
+    except Exception as e:
+        print(e)
        
+        
 
-
-class ActionSubmit(Action):
-    
+class ActionHelloWorld(Action):
 
     def name(self) -> Text:
-        return "action_submit"
+        
+         return "action_submit"
 
-    def run(
-        self,
-        dispatcher,
-        tracker: Tracker,
-        domain: "DomainDict",
-    ) -> List[Dict[Text, Any]]:
-    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(template="utter_submit",
-                                 Name=tracker.get_slot("full_name"))
+        Link = "https://calendly.com/nevrio"
+        dispatcher.utter_template("utter_submit",tracker,tracker.get_slot("full_name"),link=Link)
+
+        return []
         
 
 

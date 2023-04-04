@@ -135,7 +135,7 @@ responses:
   - text: "Your email id is {email_id}. Please provide your Contact Number: "
   
   utter_submit:
-  - text: Thank you for sharing your details {full_name}. You can schedule an appointment with us here 👉 link
+  - text: Thank you for sharing for your details {full_name}. You can schedule an appointment with us here 👉 {link}
 
   utter_response:
   - text: We will get back to you as soon as possible.
@@ -147,7 +147,7 @@ session_config:
 
 
 actions:
-- action_hello_world
+- comapany_website_link
 - action_submit
 - validate_info_form
 - action_email

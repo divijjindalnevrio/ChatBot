@@ -17,7 +17,7 @@ stories:
 - story: company_more_info
   steps:
   - intent: more_info
-  - action: action_hello_world
+  - action: comapany_website_link
 
 - story: timing
   steps:
@@ -84,7 +84,7 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
-  - action: utter_submit
+  - action: action_submit
   - action: action_email
   - action: utter_response
 
