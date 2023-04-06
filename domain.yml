@@ -139,6 +139,9 @@ responses:
 
   utter_response:
   - text: We will get back to you as soon as possible.
+
+  utter_job_vacancy:
+  - text: Here are current openings.
   
 
 session_config:
@@ -151,3 +154,4 @@ actions:
 - action_submit
 - validate_info_form
 - action_email
+- action_job

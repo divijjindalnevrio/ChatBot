@@ -96,6 +96,13 @@ stories:
   - intent: health
   - action: utter_health
 
+- story: Job
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: want_job
+  - action: action_job
+
 - story: bye
   steps:
   - intent: goodbye

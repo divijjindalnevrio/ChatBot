@@ -11,9 +11,11 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
-import smtplib, ssl
+import smtplib
 import re
 import os
+import requests
+import json
 
 
 
@@ -129,7 +131,7 @@ def send_email(name,email):
        
         
 
-class ActionHelloWorld(Action):
+class ActionSubmit(Action):
 
     def name(self) -> Text:
         
@@ -143,8 +145,38 @@ class ActionHelloWorld(Action):
         dispatcher.utter_template("utter_submit",tracker,tracker.get_slot("full_name"),link=Link)
 
         return []
+    
+
+
+class ActionJobHunt(Action):
+
+    def name(self) -> Text:
+        
+         return "action_job"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        response = requests.get('https://www.jsonkeeper.com/b/1T0V')
+        response.raise_for_status()
+
+        jobs = response.json()["jobs"]
+
+        dispatcher.utter_message(response= "utter_job_vacancy")
+        for job in jobs:
+
+            dispatcher.utter_message(text="Job ID: " + json.dumps(job["id"])) 
+            dispatcher.utter_message(text="Title: " + json.dumps(job["title"]))
+            dispatcher.utter_message(text="Description: " + json.dumps(job["description"]))
+            dispatcher.utter_message(text="Status: " + json.dumps(job["active"]))
+
+        return []
+
         
 
+
+        
 
 
 
